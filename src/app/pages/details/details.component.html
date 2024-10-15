@@ -1,0 +1,90 @@
+<app-header [userImg]="UserProfImg"></app-header>
+
+<div *ngIf="movieDetail" class="container mx-auto my-8 p-4" style="margin-top: 4rem; margin-bottom: 5rem;">
+  <h1 class="text-4xl font-bold">{{ movieDetail.original_title }}</h1>
+  <p class="my-4">{{ movieDetail.overview }}</p>
+
+  <a 
+    [routerLink]="['/browse']" 
+    class="text-white font-semibold bg-indigo-500 hover:bg-indigo-600 py-2 px-4 rounded-lg transition duration-300"
+  >Back to Search</a>
+
+  <div class="flex flex-col md:flex-row mt-6 space-y-4 md:space-y-0 md:space-x-8">
+    <!-- Image Section -->
+    <img 
+      class="w-full max-w-sm rounded-lg" 
+      [src]="'https://image.tmdb.org/t/p/w500' + movieDetail.poster_path" 
+      alt="{{ movieDetail.original_title }} poster"
+    />
+    
+    <!-- Details Section -->
+    <div class="flex-1">
+      <h2 class="text-2xl font-bold">Release Date:</h2>
+      <p>{{ movieDetail.release_date | date: 'dd/MM/yyyy' }}</p>
+
+      <h2 class="text-2xl font-bold">Runtime:</h2>
+      <p>{{ movieDetail.runtime }} minutes</p>
+
+      <h2 class="text-2xl font-bold">Popularity:</h2>
+      <p>{{ movieDetail.popularity }}</p>
+
+      <h2 class="text-2xl font-bold">Vote Average:</h2>
+      <p>{{ movieDetail.vote_average }}</p>
+
+      <h2 class="text-2xl font-bold">Tagline:</h2>
+      <p>{{ movieDetail.tagline }}</p>
+
+      <!-- <h2 class="text-2xl font-bold">Director(s):</h2>
+      <ul>
+        <li *ngFor="let director of movieDetail.director" class="list-disc ml-5">{{ director }}</li>
+      </ul> -->
+
+      <!-- <h2 class="text-2xl font-bold">Cast:</h2>
+      <ul>
+        <li *ngFor="let actor of movieDetail.cast " class="list-disc ml-5">{{ actor.name }}</li>
+    </ul> -->
+
+    <h2 class="text-2xl font-bold">Cast:</h2>
+<div class="grid grid-cols-3 gap-4 my-4">
+  <div *ngFor="let actor of movieDetail.cast " class="flex items-center">
+    <img 
+      [src]="'https://image.tmdb.org/t/p/w500' + actor.profile_path" 
+      alt="{{ actor.name }} profile picture" 
+      class="w-16 h-16 rounded-full mr-3" 
+    />
+    <span class="list-disc">{{ actor.name }}</span>
+  </div>
+</div>
+      <h2 class="text-2xl font-bold">Production Companies:</h2>
+      <ul>
+        <li *ngFor="let company of movieDetail.production_companies" class="list-disc ml-5">{{ company.name }}</li>
+      </ul>
+
+      <h2 class="text-2xl font-bold">Production Countries:</h2>
+      <ul>
+        <li *ngFor="let country of movieDetail.production_countries" class="list-disc ml-5">{{ country.name }}</li>
+      </ul>
+
+      <h2 class="text-2xl font-bold">Spoken Languages:</h2>
+      <ul>
+        <li *ngFor="let language of movieDetail.spoken_languages" class="list-disc ml-5">{{ language.name }}</li>
+      </ul>
+
+      <h2 class="text-2xl font-bold">Genre(s):</h2>
+      <ul>
+        <li *ngFor="let genre of movieDetail.genres" class="list-disc ml-5">{{ genre.name }}</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="video-container my-8">
+    <iframe
+      *ngIf="videoKey"
+      class="w-full aspect-video rounded-lg shadow-lg"
+      [src]="videoUrl"
+      frameborder="0"
+      allowfullscreen
+    ></iframe>
+  </div>
+</div>
+

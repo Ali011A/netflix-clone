@@ -1,0 +1,130 @@
+<app-header [userImg]="UserProfImg"></app-header>
+
+<div class="container px-20 " style="margin-top: 4rem; margin-bottom: 5rem;">
+    <h2 class="text-3xl font-semibold mb-4">News & Popular</h2>
+  
+    <div class="section mb-6"  >
+      <h3 class="text-2xl font-semibold mb-3">Trending Now</h3>
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4" >
+        <ng-container *ngFor="let movie of trendingContent">
+          <div
+            (mouseenter)="setHovercontent(movie)"
+            (mouseleave)="clearHovercontent()"
+            
+            class="card relative cursor-pointer p-2 border border-gray-700 rounded-md"
+          >
+         
+            <img
+              [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path"
+              alt="{{ movie.original_title }} Poster"
+              class=" rounded-md"
+            />
+            <div
+              *ngIf="
+                movie.title === selectedContent || movie.name === selectedContent
+              "
+              class="desc p-2 bg-black bg-opacity-80 text-white absolute bottom-0 left-0 right-0 rounded-b-md"
+            >
+              <span class="text-base font-bold">{{ movie.original_title }}</span>
+              <p class="text-xs my-3">{{ movie.overview.slice(0, 110) }}...</p>
+              <div class="py-2">
+                <p class="text-xs flex justify-between items-center">
+                  <span class="text-green-500"
+                    >Vote Average: {{ movie.vote_average }}</span
+                  >
+                  <i (click)="goToDetails(movie.id)" class="fa fa-2x fa-chevron-circle-down text-blue-500 hover:text-blue-700 transition duration-300 transform hover:scale-110"
+                  aria-hidden="true"
+                  title="More Info"></i>
+                </p>
+               
+              </div>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  
+    <div class="section mb-6">
+      <h3 class="text-2xl font-semibold mb-3">Popular Movies</h3>
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        <ng-container *ngFor="let movie of popularMovies">
+          <div
+            (mouseenter)="setHovercontent(movie)"
+            (mouseleave)="clearHovercontent()"
+            
+            class="card relative cursor-pointer p-2 border border-gray-700 rounded-md"
+          >
+         
+            <img
+              [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path"
+              alt="{{ movie.original_title }} Poster"
+              class=" rounded-md"
+            />
+            <div
+              *ngIf="
+                movie.title === selectedContent || movie.name === selectedContent
+              "
+              class="desc p-2 bg-black bg-opacity-80 text-white absolute bottom-0 left-0 right-0 rounded-b-md"
+            >
+              <span class="text-base font-bold">{{ movie.original_title }}</span>
+              <p class="text-xs my-3">{{ movie.overview.slice(0, 110) }}...</p>
+              <div class="py-2">
+                <p class="text-xs flex justify-between items-center">
+                  <span class="text-green-500"
+                    >Vote Average: {{ movie.vote_average }}</span
+                  >
+                  <i (click)="goToDetails(movie.id)" class="fa fa-2x fa-chevron-circle-down text-blue-500 hover:text-blue-700 transition duration-300 transform hover:scale-110"
+                  aria-hidden="true"
+                  title="More Info"></i>
+                </p>
+               
+              </div>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  
+    <div class="section mb-6">
+      <h3 class="text-2xl font-semibold mb-3">Popular TV Shows</h3>
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        <ng-container *ngFor="let movie of popularTvShows">
+          <div
+            (mouseenter)="setHovercontent(movie)"
+            (mouseleave)="clearHovercontent()"
+            
+            class="card relative cursor-pointer p-2 border border-gray-700 rounded-md"
+          >
+         
+            <img
+              [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path"
+              alt="{{ movie.original_title }} Poster"
+              class=" rounded-md"
+            />
+            <div
+              *ngIf="
+                movie.title === selectedContent || movie.name === selectedContent
+              "
+              class="desc p-2 bg-black bg-opacity-80 text-white absolute bottom-0 left-0 right-0 rounded-b-md"
+            >
+              <span class="text-base font-bold">{{ movie.original_title }}</span>
+              <p class="text-xs my-3">{{ movie.overview.slice(0, 110) }}...</p>
+              <div class="py-2">
+                <p class="text-xs flex justify-between items-center">
+                  <span class="text-green-500"
+                    >Vote Average: {{ movie.vote_average }}</span
+                  >
+                  <i (click)="goToDetails(movie.id)" class="fa fa-2x fa-chevron-circle-down text-blue-500 hover:text-blue-700 transition duration-300 transform hover:scale-110"
+                  aria-hidden="true"
+                  title="More Info"></i>
+                </p>
+               
+              </div>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+  
+

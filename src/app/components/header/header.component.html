@@ -1,0 +1,38 @@
+<header class="h-[68px] z-10 bg-gray-900 fixed top-0 left-0 right-0 flex items-center justify-between px-10 shadow-md">
+    <!-- Logo + Nav Items -->
+    <div class="flex items-center gap-5">
+        <img width="110" src="./assets/pngwing.com.png" alt="Netflix Logo" class="h-auto" />
+        <ul class="flex items-center space-x-5">
+            <!-- <li *ngFor="let item of items" class="text-neutral-200 cursor-pointer text-sm font-extralight hover:text-gray-400 transition duration-300">{{ item }}</li> -->
+            <li [routerLink]="['/browse']" class="text-neutral-200 cursor-pointer text-sm font-extralight hover:text-gray-400 transition duration-300" >
+                Home
+            </li>
+            <li [routerLink]="['/tvshow']" class="text-neutral-200 cursor-pointer text-sm font-extralight hover:text-gray-400 transition duration-300" >
+                TV Show
+            </li>
+            <li  [routerLink]="['/newspopular']"   class="text-neutral-200 cursor-pointer text-sm font-extralight hover:text-gray-400 transition duration-300" >
+                News & popular
+            </li>
+            <li [routerLink]="['/featured']" class="text-neutral-200 cursor-pointer text-sm font-extralight hover:text-gray-400 transition duration-300" >
+                Featured
+            </li>
+            <li [routerLink]="['/mylist']"  class="text-neutral-200 cursor-pointer text-sm font-extralight hover:text-gray-400 transition duration-300" >
+                My List
+            </li>
+            <li class="text-neutral-200 cursor-pointer text-sm font-extralight hover:text-gray-400 transition duration-300" >
+                Browse By Language
+            </li>            
+            
+
+        </ul>
+    </div>
+    <!-- Welcome User | Profile Img | Signout -->
+    <div class="text-white flex items-center gap-4">
+        <div class="flex items-center gap-2">
+            <a href="/" class="text-sm">Welcome <strong>{{name}}</strong></a>
+            <img [src]="userImg" width="42" class="rounded-full" alt="User Profile Image" />
+        </div>
+        <span class="text-white">|</span>
+        <a (click)="signOut()" class="cursor-pointer text-sm hover:text-gray-400 transition duration-300">Signout</a>
+    </div>
+</header>

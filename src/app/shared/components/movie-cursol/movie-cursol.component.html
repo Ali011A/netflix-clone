@@ -1,0 +1,51 @@
+
+ <div class="container px-20 mt-14 mb-20">
+    <p class="font-semibold text-2xl my-3 ml-3">{{ title }}</p>
+    <div #swiperContainer class="swiper-container">
+      <div class="swiper-wrapper">
+        <ng-container *ngFor="let movie of videoContents">
+          <div 
+            (mouseenter)="setHovercontent(movie)" 
+            (mouseleave)="clearHovercontent()" 
+            
+            class="swiper-slide relative"
+          >
+            <img 
+              [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path" 
+              alt="{{ movie.original_title }} Poster" 
+              
+            />
+            <div *ngIf="(movie.title === selectedContent) || (movie.name === selectedContent)" class="desc p-2">
+              <span class="text-base flex flex-wrap font-bold">{{ movie.original_title }}</span>
+              <p class="text-xs my-3">{{ movie.overview.slice(0, 110) }}...</p>
+              <div class="py-3 absolute w-[90%] bottom-1">
+                <p class="text-xs flex justify-between items-center">
+                  <span class="text-green-500">Vote Average: {{ movie.vote_average }}</span>
+                  <i (click)="goToDetails(movie.id)" 
+                    class="fa fa-2x fa-chevron-circle-down text-blue-500 hover:text-blue-700 transition duration-300 transform hover:scale-110"
+                  aria-hidden="true"
+                  title="More Info"></i>
+                </p>
+               <!-- add -->
+     <i
+     (click)="addToFavorites(movie); $event.stopPropagation()"
+     *ngIf="!FavData.includes(movie.id)"
+     class="fa-regular fa-heart heart mx-2 fa-2x cursor-pointer text-red-500"
+   ></i>
+
+   <!-- Remove from Favorites -->
+   <i
+     (click)="removeFromFavorites(movie.id); $event.stopPropagation()"
+     *ngIf="FavData.includes(movie.id)"
+     class="fa-solid fa-heart-broken heart mx-2 fa-2x cursor-pointer text-red-500"
+   ></i>
+
+              </div>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+
+  
+  </div>
